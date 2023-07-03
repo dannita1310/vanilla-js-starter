@@ -1,15 +1,33 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-	<title>Ejemplo básico</title>
-	<meta charset="UTF-8" />
-</head>
-
-<body>
-	<h1>La aplicación esta corriendo!</h1>
-
-	<script src="./index.js" type="module"></script>
-</body>
-
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="styles.css/style.css" />
+  </head>
+  <body>
+    <body>
+    <div class="container">
+      <div class="container-contador">Tareas Completadas:<div class="Centrar" id="contador">0</div></div>
+      <h1>Lista de Tareas</h1>
+      <div id="NuevaTarea">
+        <form>
+          <input
+            type="text"
+            id="InformacionTarea"
+            placeholder="Agregar Tarea:"
+          />
+          <button id="Agregar">Agregar</button>
+        </form>
+      </div>
+      <div class="Lista-container">
+        <ul id="Lista"></ul>
+      </div>
+      <div class="empty">
+        <p>No existen tareas</p>
+      </div>
+    </div>
+    <script type="module" src="Javascript/module.js" ></script>
+  </body>
 </html>
