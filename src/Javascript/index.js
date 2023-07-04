@@ -6,7 +6,8 @@ let empty = window.document.querySelector(".empty");
 let contador = window.document.querySelector("#contador");
 
 //Evento del botón agregar
-function add(e) {
+import { post } from "./api.js";
+async function add(e) {
   e.preventDefault();
 
   let tarea = InformacionTarea.value;
@@ -16,8 +17,11 @@ function add(e) {
     let p = document.createElement("p");
 
     p.textContent = tarea;
+    let posted = await post({ task: tarea });
+    console.log("posted :", posted);
 
     li.appendChild(p);
+    li.id = posted.id;
     li.appendChild(btnCheck());
     li.appendChild(AddDeleteBoton());
     ul.appendChild(li);
@@ -54,6 +58,7 @@ function AddDeleteBoton() {
 
   DeleteBtn.addEventListener("click", (e) => {
     let item = e.target.parentElement;
+    console.log(item.id);
 
     let checkbox = item.querySelector("input");
 
