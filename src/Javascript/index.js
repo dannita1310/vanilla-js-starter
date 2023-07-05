@@ -1,36 +1,47 @@
+import { post, deleteData, getData } from "./api.js";
 //Variables.
 
 let InformacionTarea = window.document.querySelector("#InformacionTarea");
 let ul = window.document.querySelector("ul");
 let empty = window.document.querySelector(".empty");
 let contador = window.document.querySelector("#contador");
-
 //Evento del botón agregar
-import { post } from "./api.js";
 async function add(e) {
   e.preventDefault();
 
   let tarea = InformacionTarea.value;
 
   if (tarea !== "") {
-    let li = document.createElement("li");
-    let p = document.createElement("p");
-
-    p.textContent = tarea;
     let posted = await post({ task: tarea });
-    console.log("posted :", posted);
 
-    li.appendChild(p);
-    li.id = posted.id;
-    li.appendChild(btnCheck());
-    li.appendChild(AddDeleteBoton());
-    ul.appendChild(li);
+    crearElemento(tarea, posted.id);
 
     InformacionTarea.value = "";
     empty.style.display = "none";
   } else {
     alert("Ingresar texto");
   }
+}
+
+async function cargarTareas() {
+  let tareas = await getData();
+  tareas.forEach((tarea) => {
+    crearElemento(tarea.task, tarea.id);
+  });
+}
+
+function crearElemento(texto, id) {
+  let li = document.createElement("li");
+  let p = document.createElement("p");
+
+  p.textContent = texto;
+  li.appendChild(p);
+  li.id = id;
+  li.appendChild(btnCheck());
+  li.appendChild(AddDeleteBoton());
+  ul.appendChild(li);
+
+  empty.style.display = "none";
 }
 
 function btnCheck() {
@@ -51,14 +62,14 @@ function btnCheck() {
 //Botón de eliminar.
 
 function AddDeleteBoton() {
-  let DeleteBtn = document.createElement("button");
+  let deleteBtn = document.createElement("button");
 
-  DeleteBtn.textContent = "🦄";
-  DeleteBtn.className = "del";
+  deleteBtn.textContent = "🦄";
+  deleteBtn.className = "del";
 
-  DeleteBtn.addEventListener("click", (e) => {
+  deleteBtn.addEventListener("click", async (e) => {
     let item = e.target.parentElement;
-    console.log(item.id);
+    await deleteData(item.id);
 
     let checkbox = item.querySelector("input");
 
@@ -73,7 +84,7 @@ function AddDeleteBoton() {
       empty.style.display = "block";
     }
   });
-  return DeleteBtn;
+  return deleteBtn;
 }
 
 function disminuirContador() {
@@ -87,4 +98,4 @@ function aumentarContador() {
   contador.textContent = cuenta;
 }
 
-export { add };
+export { add, cargarTareas };

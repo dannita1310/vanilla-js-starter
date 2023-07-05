@@ -2,10 +2,8 @@
 async function getData() {
   const response = await fetch("http://localhost:3000/api/task");
   const data = await response.json();
-  console.log(data);
   return data;
 }
-export { getData };
 
 //POST
 async function post(task) {
@@ -21,26 +19,23 @@ async function post(task) {
   return postedTask; // {task: "Algo que hacer", id:"fsdf-fads-sdff"}
 }
 
-export { post };
-
-//Delete
-function deletedata(texto) {
-  fetch("http://localhost:3000/api/task/<task_id>", {
+//DELETE
+async function deleteData(task_id) {
+  const response = await fetch("http://localhost:3000/api/task/" + task_id, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ task: texto }),
-  })
-    .then((response) => response.json())
-    .then((response) => console.log(JSON.stringify(response)));
+  });
+  const deleteTask = await response.json();
+  return deleteTask;
 }
 
-//PUT
-// async function upload(formData) {
-/*try {
-    const response = await fetch("http://localhost:3000/api/task/<task_id>", {
+// // PUT
+async function upload(formData) {
+  try {
+    const response = await fetch("http://localhost:3000/api/task/" + task_id, {
       method: "PUT",
       body: formData,
     });
@@ -51,10 +46,4 @@ function deletedata(texto) {
   }
 }
 
-const formData = new FormData();
-const fileField = document.querySelector('input[type="file"]');
-
-formData.append("username", "abc123");
-formData.append("avatar", fileField.files[0]);
-
-upload(formData);*/
+export { getData, post, deleteData };
