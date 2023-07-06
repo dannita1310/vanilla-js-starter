@@ -11,7 +11,7 @@ async function add(e) {
 
   let tarea = InformacionTarea.value;
 
-  if (tarea !== "") {
+  if (tarea !== "" && tarea.trim()) {
     let posted = await post({ task: tarea, checked: false });
 
     crearElemento(tarea, posted.id);
@@ -25,9 +25,16 @@ async function add(e) {
 
 async function cargarTareas() {
   let tareas = await getData();
+  let contadorLista = 0;
   tareas.forEach((tarea) => {
     crearElemento(tarea.task, tarea.id, tarea.checked);
   });
+  for (let index = 0; index < tareas.length; index++) {
+    if (tareas[index].checked == true) {
+      contadorLista++;
+    }
+  }
+  contador.textContent = contadorLista;
 }
 
 function crearElemento(texto, id, check) {
@@ -65,7 +72,6 @@ function btnCheck(check) {
 
   return Checkbox;
 }
-
 
 //Botón de eliminar.
 

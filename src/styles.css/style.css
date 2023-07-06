@@ -157,3 +157,24 @@ li {
   border: 1px solid #939697;
   margin-right: 30px;
 }
+
+@media (min-width: 768px) {
+  section {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+  }
+  .container {
+    border-radius: 0px;
+  }
+}
+@media (min-width: 1024px) {
+  section {
+    display: contents;
+    justify-content: center;
+    gap: 10px;
+  }
+  .container {
+    border-radius: 0%;
+  }
+}
