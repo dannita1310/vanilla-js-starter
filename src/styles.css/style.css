@@ -11,6 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   background-image: url("https://images2.alphacoders.com/103/thumb-1920-1039991.jpg");
+  background-image: cover;
 }
 
 .container-contador {
