@@ -33,17 +33,18 @@ async function deleteData(task_id) {
 }
 
 // // PUT
-async function upload(formData) {
-  try {
-    const response = await fetch("http://localhost:3000/api/task/" + task_id, {
-      method: "PUT",
-      body: formData,
-    });
-    const result = await response.json();
-    console.log("Success:", result);
-  } catch (error) {
-    console.error("Error:", error);
-  }
+
+async function updateData(task_id, task) {
+  const response = await fetch("http://localhost:3000/api/task/" + task_id, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+  const postedTask = await response.json();
+  return postedTask; 
 }
 
-export { getData, post, deleteData };
+export { getData, post, deleteData, updateData };

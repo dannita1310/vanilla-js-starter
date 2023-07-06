@@ -1,4 +1,4 @@
-import { post, deleteData, getData } from "./api.js";
+import { post, deleteData, getData, updateData } from "./api.js";
 //Variables.
 
 let InformacionTarea = window.document.querySelector("#InformacionTarea");
@@ -12,7 +12,7 @@ async function add(e) {
   let tarea = InformacionTarea.value;
 
   if (tarea !== "") {
-    let posted = await post({ task: tarea });
+    let posted = await post({ task: tarea, checked: false });
 
     crearElemento(tarea, posted.id);
 
@@ -26,38 +26,46 @@ async function add(e) {
 async function cargarTareas() {
   let tareas = await getData();
   tareas.forEach((tarea) => {
-    crearElemento(tarea.task, tarea.id);
+    crearElemento(tarea.task, tarea.id, tarea.checked);
   });
 }
 
-function crearElemento(texto, id) {
+function crearElemento(texto, id, check) {
   let li = document.createElement("li");
   let p = document.createElement("p");
 
   p.textContent = texto;
   li.appendChild(p);
   li.id = id;
-  li.appendChild(btnCheck());
+  li.appendChild(btnCheck(check));
   li.appendChild(AddDeleteBoton());
   ul.appendChild(li);
 
   empty.style.display = "none";
 }
 
-function btnCheck() {
+function btnCheck(check) {
   let Checkbox = document.createElement("input");
   Checkbox.setAttribute("type", "checkbox");
+  Checkbox.checked = check;
+  // let check = check;
 
-  Checkbox.addEventListener("click", function () {
+  Checkbox.addEventListener("change", async (e) => {
+    let item = e.target.parentElement;
+
     if (Checkbox.checked) {
       aumentarContador();
+      //updateData(id, { checked: true });
     } else {
       disminuirContador();
+      //updateData(id, { checked: false });
     }
+    updateData(item.id, { checked: Checkbox.checked });
   });
 
   return Checkbox;
 }
+
 
 //Botón de eliminar.
 
