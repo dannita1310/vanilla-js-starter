@@ -164,7 +164,7 @@ li {
     justify-content: center;
     gap: 10px;
   }
-  .container {
+  body {
     border-radius: 0px;
   }
 }
@@ -174,7 +174,7 @@ li {
     justify-content: center;
     gap: 10px;
   }
-  .container {
-    border-radius: 0%;
+  body {
+    border-radius: 10%;
   }
 }
