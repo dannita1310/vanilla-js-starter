@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista de Tareas</title>
     <link rel="stylesheet" href="styles.css/style.css" />
+    <link rel="stylesheet" media="only screen and (max-width: 768px)" href="styles.css/style.css">
   </head>
   <body>
     <body>
     <div class="container">
       <div class="container-contador">Tareas Completadas:<div class="Centrar" id="contador">0</div></div>
+      <div class="container-buscador"> <input
+        type="text"
+        id="BuscadorTarea"
+        placeholder="Buscar Tarea:"
+      />
+      </div>
       <h1>Lista de Tareas</h1>
       <div id="NuevaTarea">
         <form>
@@ -28,6 +35,7 @@
         <p>No existen tareas</p>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="Javascript/module.js" ></script>
   </body>
 </html>

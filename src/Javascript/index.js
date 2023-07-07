@@ -19,7 +19,13 @@ async function add(e) {
     InformacionTarea.value = "";
     empty.style.display = "none";
   } else {
-    alert("Ingresar texto");
+    Swal.fire({
+      position: "top",
+      icon: "error",
+      title: "Oops...",
+      text: "Agregue una Tarea",
+      timer: 2000,
+    });
   }
 }
 
@@ -113,3 +119,21 @@ function aumentarContador() {
 }
 
 export { add, cargarTareas };
+
+// function searchTasks() {
+//   var searchTerm = document.getElementById("BuscadorTarea").value.toLowerCase();
+//   var matchedTasks = [];
+
+//   // Iterar sobre las tareas y encontrar coincidencias
+//   tareas.forEach(function (task) {
+//     if (task.toLowerCase().indexOf(searchTerm) !== -1) {
+//       matchedTasks.push(task);
+//     }
+//   });
+
+//   displayTasks(matchedTasks);
+// }
+
+// displayTasks(tasks);
+
+// document.getElementById("BuscadorTarea").addEventListener("input", searchTasks);
