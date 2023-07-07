@@ -118,13 +118,10 @@ function aumentarContador() {
   contador.textContent = cuenta;
 }
 
-export { add, cargarTareas };
-
 // function searchTasks() {
 //   var searchTerm = document.getElementById("BuscadorTarea").value.toLowerCase();
 //   var matchedTasks = [];
 
-//   // Iterar sobre las tareas y encontrar coincidencias
 //   tareas.forEach(function (task) {
 //     if (task.toLowerCase().indexOf(searchTerm) !== -1) {
 //       matchedTasks.push(task);
@@ -134,6 +131,19 @@ export { add, cargarTareas };
 //   displayTasks(matchedTasks);
 // }
 
-// displayTasks(tasks);
 
-// document.getElementById("BuscadorTarea").addEventListener("input", searchTasks);
+//1. Tener un input para buscar el texto. (x)
+//2. Tener un botón para hacer la busqueda. ( )
+//3. Obtener el texto de busqueda. (x)
+//4. Obtener la lista de elementos a filtrar.( )
+//5. filtrar la lista segun el texto en busqueda.( )
+//6. Mostrar unicamente los elementos filtrados.( )
+//7. Limpiar busqueda (quitar el texto de busqueda y al final mostrar todos los elementos).( )
+
+
+//displayTasks(tasks);
+
+//document.getElementById("BuscadorTarea").addEventListener("input", searchTasks);
+
+
+export { add, cargarTareas };
